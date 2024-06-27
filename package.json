@@ -7,9 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angbasessr": "node dist/angbasessr/server/server.mjs"
+    "serve:ssr:angbasessr": "node dist/server/server.mjs"
   },
   "private": true,
+  "engines": {
+    "node": "20"
+  },
   "dependencies": {
     "@angular/animations": "^18.0.0",
     "@angular/common": "^18.0.0",
@@ -20,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/platform-server": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@angular/service-worker": "^18.0.0",
     "@angular/ssr": "^18.0.4",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
