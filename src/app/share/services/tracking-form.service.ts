@@ -13,29 +13,29 @@ export class TrackingFormService {
   constructor(private modalService: ModalService) {
   }
 
-  onRegister = (formName: string, form: FormGroup): void => {
+  ngOnRegister = (formName: string, form: FormGroup): void => {
     const data = this.formList?.find((item: TrackingFormInterface) => item.formName === formName);
     data ? (data.form = form) : this.formList?.push({formName, form});
   };
 
-  onUnregister = (formName: string | undefined): void => {
+  ngOnUnregister = (formName: string | undefined): void => {
     if (formName) {
       const index = this.formList?.findIndex((item: TrackingFormInterface) => item?.formName === formName);
       (index && index !== -1) && this.formList?.splice(index, 1);
     }
   };
 
-  onUnregisterAll = (): void => {
+  ngOnUnregisterAll = (): void => {
     this.formList = [];
   };
 
-  onCheckFormChange = (formName: string | null = null) => {
-    if (this.onChecking(formName)) {
-      this.modalService.onWarning('Đang có bản ghi thay đổi', 'Hãy save lại trước');
+  ngOnCheckFormChange = (formName: string | null = null, onOk?: any, onCancel?: any) => {
+    if (this.ngOnChecking(formName)) {
+      this.modalService.onWarning('Đang có bản ghi thay đổi', 'Hãy save lại trước', onOk, onCancel);
     }
   };
 
-  private onChecking = (formName: string | null = null): boolean => {
+  private ngOnChecking = (formName: string | null = null): boolean => {
     return !!this.formList
       ?.filter((item: TrackingFormInterface) => formName ? (item.formName === formName) : item)
       ?.some((item: TrackingFormInterface) => item.form.dirty && item.form.touched);

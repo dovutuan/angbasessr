@@ -17,15 +17,12 @@ export class TrackingFormDirective {
   }
 
   ngOnInit(): void {
-    console.log(this.formName);
-    console.log(this.formGroupDirective.form);
     if (this.formName && this.formGroupDirective.form) {
-      console.log(1);
-      this.trackingFormService.onRegister(this.formName, this.formGroupDirective.form);
+      this.trackingFormService.ngOnRegister(this.formName, this.formGroupDirective.form);
     }
   };
 
   ngOnDestroy(): void {
-    this.trackingFormService.onUnregister(this.formName);
+    this.trackingFormService.ngOnUnregister(this.formName);
   };
 }
