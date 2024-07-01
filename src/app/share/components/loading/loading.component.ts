@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {TypeLoadingConfig} from '../../core/configs/loading.config';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {LoadingConfig} from '../../core/configs/loading.config';
+import {LoadingInterface} from '../../core/interfaces/loading.interface';
 
 @Component({
   selector: 'app-loading',
@@ -14,6 +15,5 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
   styleUrl: './loading.component.scss'
 })
 export class LoadingComponent {
-  protected typeLoadingConfig = TypeLoadingConfig;
-  public typeCustom: string | null = null;
+  protected loadingConfig: LoadingInterface = LoadingConfig;
 }

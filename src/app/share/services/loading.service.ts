@@ -1,5 +1,7 @@
-import {ApplicationRef, ComponentRef, Injectable, Renderer2, RendererFactory2} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {LoadingComponent} from '../components/loading/loading.component';
+import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import {ComponentPortal} from '@angular/cdk/portal';
 
 @Injectable({
   providedIn: 'root'
@@ -7,48 +9,39 @@ import {LoadingComponent} from '../components/loading/loading.component';
 
 export class LoadingService {
   private totalShowLoading: number = 0;
-  private loadingComponentRef: ComponentRef<LoadingComponent> | null = null;
-  private renderer: Renderer2;
+  private overlayRef: OverlayRef | undefined;
 
-  constructor(
-    private appRef: ApplicationRef,
-    private rendererFactory: RendererFactory2,
-  ) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
+  constructor(private overlay: Overlay, private injector: Injector) {
   }
 
-  public onShow = (): void => {
+  public ngOnShow = (): void => {
     if (!this.totalShowLoading) {
-      this.onBuildComponentLoading();
+      this.ngOnBuild();
     }
 
     ++this.totalShowLoading;
   };
 
-  public onHide = (): void => {
+  public ngOnHide = (): void => {
     if (this.totalShowLoading) {
       --this.totalShowLoading;
-      (this.totalShowLoading === 0) && this.onClearComponentLoading();
+      (this.totalShowLoading === 0) && this.ngOnClear();
     }
   };
 
-  private onBuildComponentLoading = (typeCustom = null): void => {
-    const loadingComponent = this.renderer.createElement('div', 'loading-component');
-    loadingComponent.id = 'cdk-loading';
+  private ngOnBuild = (): void => {
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically()
+    });
 
-    this.renderer.appendChild(document.body, loadingComponent);
-
-    this.loadingComponentRef = this.appRef.bootstrap(LoadingComponent, loadingComponent);
-    typeCustom && (this.loadingComponentRef.instance.typeCustom = typeCustom);
+    const loadingPortal = new ComponentPortal(LoadingComponent, null, this.injector);
+    this.overlayRef.attach(loadingPortal);
   };
 
-  private onClearComponentLoading = (): void => {
-    if (!this.loadingComponentRef) return;
-
-    const loadingElement = this.loadingComponentRef.location.nativeElement;
-    this.renderer.removeChild(document.body, loadingElement);
-
-    this.loadingComponentRef.destroy();
-    this.loadingComponentRef = null;
+  private ngOnClear = (): void => {
+    if (this.overlayRef?.hasAttached()) {
+      this.overlayRef.detach();
+    }
   };
 }

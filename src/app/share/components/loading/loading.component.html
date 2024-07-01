@@ -1,13 +1,1 @@
-<ng-container *ngFor="let typeLoading of typeLoadingConfig">
-  <ng-container *ngIf="typeCustom ? (typeCustom === typeLoading.name) : typeLoading.default">
-    <div class="cdk-overlay-container">
-      <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
-      <div class="cdk-global-overlay-wrapper">
-        <div class="cdk-overlay-pane">
-          <img [ngSrc]="typeLoading.link" alt="icon-loading" fill>
-        </div>
-      </div>
-    </div>
-
-  </ng-container>
-</ng-container>
+<img [ngSrc]="loadingConfig.link" alt="icon-loading" fill>

@@ -7,60 +7,64 @@ import {NgForOf, NgIf} from '@angular/common';
 import {TrackingFormService} from '../../../share/services/tracking-form.service';
 
 @Component({
-    selector: 'app-test',
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        TrackingFormDirective,
-        NgForOf,
-        NgIf
-    ],
-    templateUrl: './test.component.html',
-    styleUrl: './test.component.scss'
+  selector: 'app-test',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    TrackingFormDirective,
+    NgForOf,
+    NgIf
+  ],
+  templateUrl: './test.component.html',
+  styleUrl: './test.component.scss'
 })
 export class TestComponent {
 
-    form = new FormGroup({
-        name: new FormControl(''),
-    });
+  form = new FormGroup({
+    name: new FormControl(''),
+  });
 
-    form1 = new FormGroup({
-        name: new FormControl(''),
-    });
+  form1 = new FormGroup({
+    name: new FormControl(''),
+  });
 
-    form2 = new FormGroup({
-        names: new FormArray([
-            new FormControl(''),
-            new FormControl(''),
-        ])
-    });
+  form2 = new FormGroup({
+    names: new FormArray([
+      new FormControl(''),
+      new FormControl(''),
+    ])
+  });
 
-    test = true;
+  test = true;
 
-    constructor(
-        private loadingService: LoadingService,
-        private modalService: ModalService,
-        private trackingFormService: TrackingFormService,
-    ) {
-    }
+  constructor(
+    private loadingService: LoadingService,
+    private modalService: ModalService,
+    private trackingFormService: TrackingFormService,
+  ) {
+  }
 
-    get aliases() {
-        return this.form2.get('names') as FormArray;
-    }
+  // get aliases() {
+  //     return this.form2.get('names') as FormArray;
+  // }
+  //
+  // onTest = () => {
+  //     console.log(this.form);
+  // };
+  //
+  // onTest1 = () => {
+  //     this.trackingFormService.onCheckFormChange()
+  // };
 
-    onTest = () => {
-        console.log(this.form);
-    };
+  onShowLoading = () => {
+    this.loadingService.ngOnShow();
+  };
 
-    onTest1 = () => {
-        this.trackingFormService.onCheckFormChange()
-    };
+  onHideLoading = () => {
+    this.loadingService.ngOnHide();
+  };
 
-    onShowLoading = () => {
-        this.modalService.onSuccess();
-    };
-
-    onHideLoading = () => {
-        this.loadingService.onHide();
-    };
+  onShowModal = () => {
+    this.modalService.ngOnConfirm();
+  }
 }

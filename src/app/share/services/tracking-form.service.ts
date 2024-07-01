@@ -31,7 +31,7 @@ export class TrackingFormService {
 
   ngOnCheckFormChange = (formName: string | null = null, onOk?: any, onCancel?: any) => {
     if (this.ngOnChecking(formName)) {
-      this.modalService.onWarning('Đang có bản ghi thay đổi', 'Hãy save lại trước', onOk, onCancel);
+      this.modalService.ngOnWarning('Đang có bản ghi thay đổi', 'Hãy save lại trước', onOk, onCancel);
     }
   };
 
