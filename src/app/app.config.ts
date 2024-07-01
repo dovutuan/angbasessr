@@ -6,14 +6,11 @@ import {provideClientHydration} from '@angular/platform-browser';
 import {provideServiceWorker} from '@angular/service-worker';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient } from '@angular/common/http';
-
-registerLocaleData(en);
+import {en_US, provideNzI18n} from 'ng-zorro-antd/i18n';
+import {FormsModule} from '@angular/forms';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {provideHttpClient} from '@angular/common/http';
+import {CustomTranslateModule} from './share/modules/custom-translate.module';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(NzModalModule),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(FormsModule),
+    importProvidersFrom(CustomTranslateModule),
 
     provideAnimationsAsync(),
     provideHttpClient()
