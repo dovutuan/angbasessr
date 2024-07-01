@@ -16,12 +16,20 @@ export class TrackingFormDirective {
   ) {
   }
 
+  /**
+   * Initializes the component.
+   * Registers the form with the trackingFormService if both formName and formGroupDirective.form are defined.
+   */
   ngOnInit(): void {
     if (this.formName && this.formGroupDirective.form) {
       this.trackingFormService.ngOnRegister(this.formName, this.formGroupDirective.form);
     }
   };
 
+  /**
+   * Cleans up the component before it is destroyed.
+   * Unregisters the form from the trackingFormService using the formName.
+   */
   ngOnDestroy(): void {
     this.trackingFormService.ngOnUnregister(this.formName);
   };

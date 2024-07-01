@@ -10,7 +10,7 @@ import {en_US, provideNzI18n} from 'ng-zorro-antd/i18n';
 import {FormsModule} from '@angular/forms';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideHttpClient} from '@angular/common/http';
-import {CustomTranslateModule} from './share/modules/custom-translate.module';
+import {CustomTranslateModule} from '@share/modules/custom-translate.module';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,9 +25,10 @@ export const appConfig: ApplicationConfig = {
 
     provideNzI18n(en_US),
 
-    importProvidersFrom(NzModalModule),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(FormsModule),
+
+    importProvidersFrom(NzModalModule),
     importProvidersFrom(CustomTranslateModule),
 
     provideAnimationsAsync(),

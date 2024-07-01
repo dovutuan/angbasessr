@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {LoadingService} from '../../../share/services/loading.service';
-import {ModalService} from '../../../share/services/modal.service';
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {TrackingFormDirective} from '../../../share/directives/tracking-form.directive';
+import {LoadingService} from '@share/services/loading.service';
+import {ModalService} from '@share/services/modal.service';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {TrackingFormDirective} from '@share/directives/tracking-form.directive';
 import {NgForOf, NgIf} from '@angular/common';
-import {TrackingFormService} from '../../../share/services/tracking-form.service';
+import {TrackingFormService} from '@share/services/tracking-form.service';
 
 @Component({
   selector: 'app-test',
@@ -58,6 +58,7 @@ export class TestComponent {
 
   onShowLoading = () => {
     this.loadingService.ngOnShow();
+    setTimeout(() => this.loadingService.ngOnHide(), 15000);
   };
 
   onHideLoading = () => {
@@ -66,5 +67,5 @@ export class TestComponent {
 
   onShowModal = () => {
     this.modalService.ngOnConfirm();
-  }
+  };
 }

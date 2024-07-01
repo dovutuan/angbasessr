@@ -15,6 +15,13 @@ export class ModalService {
   ) {
   }
 
+  /**
+   * Displays a confirmation modal with the specified title, content, onOk, and onCancel callbacks.
+   * @param title - The title of the confirmation modal, which can be a string or a TemplateRef.
+   * @param content - The content of the confirmation modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   */
   ngOnConfirm = (title?: string | TemplateRef<{}>,
                  content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,
                  onOk?: any,
@@ -22,6 +29,13 @@ export class ModalService {
     this.ngOnBuildModal(TypeModalEnum.CONFIRM, title, content, onOk, onCancel);
   };
 
+  /**
+   * Displays an information modal with the specified title, content, onOk, and onCancel callbacks.
+   * @param title - The title of the information modal, which can be a string or a TemplateRef.
+   * @param content - The content of the information modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   */
   ngOnInfo = (title?: string | TemplateRef<{}>,
               content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,
               onOk?: any,
@@ -29,6 +43,14 @@ export class ModalService {
     this.ngOnBuildModal(TypeModalEnum.INFO, title, content, onOk, onCancel);
   };
 
+  /**
+   * Displays a success modal with the specified title, content, onOk, and onCancel callbacks.
+   * The modal automatically closes after a certain time if isAutoClose is true.
+   * @param title - The title of the success modal, which can be a string or a TemplateRef.
+   * @param content - The content of the success modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   */
   ngOnSuccess = (title?: string | TemplateRef<{}>,
                  content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,
                  onOk?: any,
@@ -36,6 +58,13 @@ export class ModalService {
     this.ngOnBuildModal(TypeModalEnum.SUCCESS, title, content, onOk, onCancel, true);
   };
 
+  /**
+   * Displays an error modal with the specified title, content, onOk, and onCancel callbacks.
+   * @param title - The title of the error modal, which can be a string or a TemplateRef.
+   * @param content - The content of the error modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   */
   ngOnError = (title?: string | TemplateRef<{}>,
                content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,
                onOk?: any,
@@ -43,6 +72,13 @@ export class ModalService {
     this.ngOnBuildModal(TypeModalEnum.ERROR, title, content, onOk, onCancel);
   };
 
+  /**
+   * Displays a warning modal with the specified title, content, onOk, and onCancel callbacks.
+   * @param title - The title of the warning modal, which can be a string or a TemplateRef.
+   * @param content - The content of the warning modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   */
   ngOnWarning = (title?: string | TemplateRef<{}>,
                  content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,
                  onOk?: any,
@@ -50,6 +86,16 @@ export class ModalService {
     this.ngOnBuildModal(TypeModalEnum.WARNING, title, content, onOk, onCancel);
   };
 
+  /**
+   * Builds and displays a modal of the specified type with the provided options.
+   * @param type - The type of modal to display (CONFIRM, INFO, SUCCESS, ERROR, WARNING).
+   * @param title - The title of the modal, which can be a string or a TemplateRef.
+   * @param content - The content of the modal, which can be a string, a TemplateRef, or a component.
+   * @param onOk - Callback function to execute when the OK button is clicked.
+   * @param onCancel - Callback function to execute when the Cancel button is clicked.
+   * @param isAutoClose - Whether the modal should automatically close after a certain time.
+   * @param timeAutoClose - The time in milliseconds after which the modal should automatically close.
+   */
   private ngOnBuildModal = (type: string,
                             title?: string | TemplateRef<{}>,
                             content?: string | TemplateRef<NzSafeAny> | Type<NzSafeAny>,

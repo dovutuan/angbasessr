@@ -26,6 +26,9 @@
     "paths": {
       "@modules/*": [
         "./src/app/modules/*"
+      ],
+      "@share/*": [
+        "./src/app/share/*"
       ]
     }
   },
